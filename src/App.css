@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+#canva-header {
+  background-color: blue;
+}
