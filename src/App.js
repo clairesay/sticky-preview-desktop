@@ -1,5 +1,65 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import des from './design.png';
+import blackFrame from './assets/black-frame.png';
+import whiteFrame from './assets/white-frame.png';
+import noFrame from './assets/no-frame.png';
+// import hatsArr from './images';
+
+function Parameter(name, type, options, defaultSelection, showCompare) {
+  this.name = name;
+  this.type = type;
+  this.options = options;
+  this.default = defaultSelection;
+  this.showCompare = showCompare;
+}
+
+const framing = new Parameter("Framing",
+  "Thumbnail",
+  [{ label: "Black frame", asset: blackFrame },
+  { label: "White frame", asset: whiteFrame },
+  { label: "No frame", asset: noFrame },
+  ],
+  2,
+  true
+);
+
+function renderSelector(parameter) {
+  // let selectedOption = parameter.options[parameter.default];
+
+  // let label =
+
+
+  if (parameter.type === "Thumbnail") {
+    return (
+      <article class="selector">
+        {/* {label} */}
+        {/* <div class="text-group"> */}
+      <p><strong>{parameter.name}</strong></p>
+      {/* <p>{selectedOption}</p> */}
+    {/* </div> */}
+        <div class="frame-carousel">
+          {parameter.options.map(({ label, asset }) =>
+            // <div>
+              
+              <label class="thumbnail-select" for={label} onClick={updatePreview}>
+              <img src={asset} alt="label"/>
+                <input type="radio" name="frame" value={label} checked />
+                <p>{label}</p>
+              </label>
+            // </div>
+
+          )}
+        </div>
+
+      </article>
+    )
+  } else {
+
+  }
+
+}
+
 
 function App() {
 
@@ -108,62 +168,62 @@ function App() {
 
 
           {/* <section id="canvas"> */}
-            <section id="toolbar">
-              <button>
-                {/* HELP LOL */}
-                <image src="public/assets/Toolbar/color-select-swatch.png" />
+          <section id="toolbar">
+            <button>
+              {/* HELP LOL */}
+              <image src="public/assets/Toolbar/color-select-swatch.png" />
+            </button>
+            <button class="dark tertiary icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2H13C14.6569 2 16 3.34315 16 5H19H20.25C20.6642 5 21 5.33579 21 5.75C21 6.16421 20.6642 6.5 20.25 6.5H19V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V6.5H3.75C3.33579 6.5 3 6.16421 3 5.75C3 5.33579 3.33579 5 3.75 5H5H8C8 3.34315 9.34315 2 11 2ZM6.5 6.5H8H16H17.5V18C17.5 18.8284 16.8284 19.5 16 19.5H8C7.17157 19.5 6.5 18.8284 6.5 18V6.5ZM14.5 5H9.5C9.5 4.17157 10.1716 3.5 11 3.5H13C13.8284 3.5 14.5 4.17157 14.5 5ZM9.25 9H10.75V17H9.25V9ZM14.75 9H13.25V17H14.75V9Z" fill="#0E1318" />
+              </svg>
+            </button>
+          </section>
+          <section id="design-area">
+            <div id="canvas-area"></div>
+            {/* help again lol */}
+            <image src="public/assets/Toolbar/design.png" />
+          </section>
+          <section id="page-handling">
+            <section id="page-thumbnail">
+
+            </section>
+            <section id="page-toolbar">
+              <button class="light tertiary text">
+                Notes
               </button>
-              <button class="dark tertiary icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2H13C14.6569 2 16 3.34315 16 5H19H20.25C20.6642 5 21 5.33579 21 5.75C21 6.16421 20.6642 6.5 20.25 6.5H19V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V6.5H3.75C3.33579 6.5 3 6.16421 3 5.75C3 5.33579 3.33579 5 3.75 5H5H8C8 3.34315 9.34315 2 11 2ZM6.5 6.5H8H16H17.5V18C17.5 18.8284 16.8284 19.5 16 19.5H8C7.17157 19.5 6.5 18.8284 6.5 18V6.5ZM14.5 5H9.5C9.5 4.17157 10.1716 3.5 11 3.5H13C13.8284 3.5 14.5 4.17157 14.5 5ZM9.25 9H10.75V17H9.25V9ZM14.75 9H13.25V17H14.75V9Z" fill="#0E1318" />
+
+              <div class="button-container small">
+                <svg width="150" height="14" viewBox="0 0 150 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect y="6" width="150" height="2" rx="1" fill="#0E1318" fill-opacity="0.15" />
+                  <rect y="6" width="75" height="2" rx="1" fill="#0E1318" />
+                  <path d="M75 13C78.3137 13 81 10.3137 81 7C81 3.68629 78.3137 1 75 1C71.6863 1 69 3.68629 69 7C69 10.3137 71.6863 13 75 13Z" fill="#1D232D" stroke="white" stroke-width="2" />
                 </svg>
-              </button>
-            </section>
-            <section id="design-area">
-              <div id="canvas-area"></div>
-              {/* help again lol */}
-              <image src="public/assets/Toolbar/design.png" />
-            </section>
-            <section id="page-handling">
-              <section id="page-thumbnail">
-
-              </section>
-              <section id="page-toolbar">
                 <button class="light tertiary text">
-                  Notes
+                  80%
                 </button>
-
-                <div class="button-container small">
-                  <svg width="150" height="14" viewBox="0 0 150 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect y="6" width="150" height="2" rx="1" fill="#0E1318" fill-opacity="0.15" />
-                    <rect y="6" width="75" height="2" rx="1" fill="#0E1318" />
-                    <path d="M75 13C78.3137 13 81 10.3137 81 7C81 3.68629 78.3137 1 75 1C71.6863 1 69 3.68629 69 7C69 10.3137 71.6863 13 75 13Z" fill="#1D232D" stroke="white" stroke-width="2" />
+                <button class="light tertiary icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1.75" y="4.75" width="17.5" height="17.5" rx="1.25" stroke="#0E1318" stroke-width="1.5" />
+                    <path d="M8.23926 17V15.833H9.96289V11.3896L9.85059 11.3604C9.60645 11.4775 9.36556 11.5703 9.12793 11.6387C8.89355 11.707 8.625 11.7607 8.32227 11.7998V10.5938C9.11328 10.4277 9.75293 10.1836 10.2412 9.86133H11.3594V15.833H12.8975V17H8.23926Z" fill="black" />
+                    <path d="M4.75 1C4.33579 1 4 1.33579 4 1.75C4 2.16421 4.33579 2.5 4.75 2.5H19.4C20.5598 2.5 21.5 3.4402 21.5 4.6V19.25C21.5 19.6642 21.8358 20 22.25 20C22.6642 20 23 19.6642 23 19.25V4.2C23 2.43269 21.5673 1 19.8 1H4.75Z" fill="#0E1318" />
                   </svg>
-                  <button class="light tertiary text">
-                    80%
-                  </button>
-                  <button class="light tertiary icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="1.75" y="4.75" width="17.5" height="17.5" rx="1.25" stroke="#0E1318" stroke-width="1.5" />
-                      <path d="M8.23926 17V15.833H9.96289V11.3896L9.85059 11.3604C9.60645 11.4775 9.36556 11.5703 9.12793 11.6387C8.89355 11.707 8.625 11.7607 8.32227 11.7998V10.5938C9.11328 10.4277 9.75293 10.1836 10.2412 9.86133H11.3594V15.833H12.8975V17H8.23926Z" fill="black" />
-                      <path d="M4.75 1C4.33579 1 4 1.33579 4 1.75C4 2.16421 4.33579 2.5 4.75 2.5H19.4C20.5598 2.5 21.5 3.4402 21.5 4.6V19.25C21.5 19.6642 21.8358 20 22.25 20C22.6642 20 23 19.6642 23 19.25V4.2C23 2.43269 21.5673 1 19.8 1H4.75Z" fill="#0E1318" />
-                    </svg>
-                  </button>
-                  <button class="light tertiary icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6355 10.43L18.501 6.5645V9.25198C18.501 9.66619 18.8368 10.002 19.251 10.002C19.6652 10.002 20.001 9.66619 20.001 9.25198L20.001 5.49749C20.001 4.53099 19.4705 4.00195 18.504 4.00195L14.7553 4.00195C14.3411 4.00195 14.0054 4.33774 14.0054 4.75195C14.0054 5.16617 14.3411 5.50195 14.7553 5.50195L17.4422 5.50195L13.5749 9.36931C13.282 9.6622 13.282 10.1371 13.5749 10.43C13.8678 10.7229 14.3426 10.7229 14.6355 10.43ZM9.36579 13.5689L5.49902 17.4357L5.49902 14.7482C5.49902 14.334 5.16324 13.9982 4.74902 13.9982C4.33481 13.9982 3.99902 14.334 3.99902 14.7482L3.99902 18.4989C3.99902 19.4654 4.52585 19.9982 5.49235 19.9982L9.24472 19.9982C9.65893 19.9982 9.99466 19.6624 9.99466 19.2482C9.99466 18.834 9.65893 18.4982 9.24472 18.4982H6.5578L10.4265 14.6295C10.7193 14.3367 10.7193 13.8618 10.4265 13.5689C10.1336 13.276 9.65869 13.276 9.36579 13.5689Z" fill="#0E1318" />
-                    </svg>
-                  </button>
-                  <button class="light tertiary icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C7.30558 20.5 3.5 16.6944 3.5 12C3.5 7.30558 7.30558 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12ZM8.74609 9.84961H10.3525C10.4072 9.01562 10.9746 8.48242 11.8564 8.48242C12.7178 8.48242 13.292 8.99512 13.292 9.70605C13.292 10.3828 13.0049 10.7451 12.1572 11.2578C11.2139 11.8115 10.8174 12.4268 10.8789 13.4521L10.8857 13.917H12.4717V13.5273C12.4717 12.8506 12.7246 12.502 13.6201 11.9756C14.5498 11.4219 15.0693 10.6904 15.0693 9.64453C15.0693 8.13379 13.8184 7.05371 11.9453 7.05371C9.91504 7.05371 8.80078 8.22949 8.74609 9.84961ZM12.8887 16.0908C12.8887 16.7471 12.4512 17.1777 11.7539 17.1777C11.0703 17.1777 10.6191 16.7471 10.6191 16.0908C10.6191 15.4277 11.0703 14.9971 11.7539 14.9971C12.4512 14.9971 12.8887 15.4277 12.8887 16.0908Z" fill="#0E1318" />
-                    </svg>
+                </button>
+                <button class="light tertiary icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6355 10.43L18.501 6.5645V9.25198C18.501 9.66619 18.8368 10.002 19.251 10.002C19.6652 10.002 20.001 9.66619 20.001 9.25198L20.001 5.49749C20.001 4.53099 19.4705 4.00195 18.504 4.00195L14.7553 4.00195C14.3411 4.00195 14.0054 4.33774 14.0054 4.75195C14.0054 5.16617 14.3411 5.50195 14.7553 5.50195L17.4422 5.50195L13.5749 9.36931C13.282 9.6622 13.282 10.1371 13.5749 10.43C13.8678 10.7229 14.3426 10.7229 14.6355 10.43ZM9.36579 13.5689L5.49902 17.4357L5.49902 14.7482C5.49902 14.334 5.16324 13.9982 4.74902 13.9982C4.33481 13.9982 3.99902 14.334 3.99902 14.7482L3.99902 18.4989C3.99902 19.4654 4.52585 19.9982 5.49235 19.9982L9.24472 19.9982C9.65893 19.9982 9.99466 19.6624 9.99466 19.2482C9.99466 18.834 9.65893 18.4982 9.24472 18.4982H6.5578L10.4265 14.6295C10.7193 14.3367 10.7193 13.8618 10.4265 13.5689C10.1336 13.276 9.65869 13.276 9.36579 13.5689Z" fill="#0E1318" />
+                  </svg>
+                </button>
+                <button class="light tertiary icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12ZM20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C7.30558 20.5 3.5 16.6944 3.5 12C3.5 7.30558 7.30558 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12ZM8.74609 9.84961H10.3525C10.4072 9.01562 10.9746 8.48242 11.8564 8.48242C12.7178 8.48242 13.292 8.99512 13.292 9.70605C13.292 10.3828 13.0049 10.7451 12.1572 11.2578C11.2139 11.8115 10.8174 12.4268 10.8789 13.4521L10.8857 13.917H12.4717V13.5273C12.4717 12.8506 12.7246 12.502 13.6201 11.9756C14.5498 11.4219 15.0693 10.6904 15.0693 9.64453C15.0693 8.13379 13.8184 7.05371 11.9453 7.05371C9.91504 7.05371 8.80078 8.22949 8.74609 9.84961ZM12.8887 16.0908C12.8887 16.7471 12.4512 17.1777 11.7539 17.1777C11.0703 17.1777 10.6191 16.7471 10.6191 16.0908C10.6191 15.4277 11.0703 14.9971 11.7539 14.9971C12.4512 14.9971 12.8887 15.4277 12.8887 16.0908Z" fill="#0E1318" />
+                  </svg>
 
-                  </button>
-                </div>
+                </button>
+              </div>
 
-              </section>
             </section>
+          </section>
           {/* </section> */}
         </section>
         <section id="print-panel">
@@ -174,12 +234,87 @@ function App() {
             </button>
             <div></div>
             <button class="light tertiary icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.0604 11.9998L18.1868 17.1262C18.4797 17.419 18.4797 17.8939 18.1868 18.1868C17.8939 18.4797 17.419 18.4797 17.1262 18.1868L11.9998 13.0604L6.87336 18.1868C6.58047 18.4797 6.10559 18.4797 5.8127 18.1868C5.51981 17.8939 5.51981 17.419 5.8127 17.1262L10.9391 11.9998L5.81244 6.8731C5.51955 6.58021 5.51955 6.10534 5.81244 5.81244C6.10534 5.51955 6.58021 5.51955 6.8731 5.81244L11.9998 10.9391L17.1264 5.81244C17.4193 5.51955 17.8942 5.51955 18.1871 5.81244C18.48 6.10534 18.48 6.58021 18.1871 6.8731L13.0604 11.9998Z" fill="#191E26"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.0604 11.9998L18.1868 17.1262C18.4797 17.419 18.4797 17.8939 18.1868 18.1868C17.8939 18.4797 17.419 18.4797 17.1262 18.1868L11.9998 13.0604L6.87336 18.1868C6.58047 18.4797 6.10559 18.4797 5.8127 18.1868C5.51981 17.8939 5.51981 17.419 5.8127 17.1262L10.9391 11.9998L5.81244 6.8731C5.51955 6.58021 5.51955 6.10534 5.81244 5.81244C6.10534 5.51955 6.58021 5.51955 6.8731 5.81244L11.9998 10.9391L17.1264 5.81244C17.4193 5.51955 17.8942 5.51955 18.1871 5.81244C18.48 6.10534 18.48 6.58021 18.1871 6.8731L13.0604 11.9998Z" fill="#191E26" />
               </svg>
             </button>
           </section>
           <section id="print-panel-main">
+
+            {/* headline */}
+            <h1>Print your designs on quality posters</h1>
+            <div class="text-group">
+              <i>Various sizes</i><i>•</i><i>Portrait</i>
+            </div>
+            <section id="live-preview">
+              <img alt="live-preview"/>
+
+            </section>
+
+            {/* <article > */}
+            <article>
+              <p><strong>Select your pages to print</strong></p>
+              <div class="select page">
+                <img src={des} alt="page-select"/>
+                <p>Page 1</p>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.7117 7.04975L8.17621 10.5853C8.07858 10.6829 7.92029 10.6829 7.82266 10.5853L4.28712 7.04975C3.99423 6.75685 3.51936 6.75685 3.22646 7.04975C2.93357 7.34264 2.93357 7.81751 3.22646 8.11041L6.762 11.6459C7.44541 12.3294 8.55345 12.3294 9.23687 11.6459L12.7724 8.11041C13.0653 7.81751 13.0653 7.34264 12.7724 7.04975C12.4795 6.75685 12.0046 6.75685 11.7117 7.04975Z" fill="#0D1216" />
+                </svg>
+
+              </div>
+            </article>
+            <article>
+              <p><strong>What size?</strong></p>
+              <div class="select size">
+                <p>Small</p>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.7117 7.04975L8.17621 10.5853C8.07858 10.6829 7.92029 10.6829 7.82266 10.5853L4.28712 7.04975C3.99423 6.75685 3.51936 6.75685 3.22646 7.04975C2.93357 7.34264 2.93357 7.81751 3.22646 8.11041L6.762 11.6459C7.44541 12.3294 8.55345 12.3294 9.23687 11.6459L12.7724 8.11041C13.0653 7.81751 13.0653 7.34264 12.7724 7.04975C12.4795 6.75685 12.0046 6.75685 11.7117 7.04975Z" fill="#0D1216" />
+                </svg>
+              </div>
+              <ul>
+                <li onClick={updatePreview(this)}>
+                  <p>Small</p>
+                  <sub>
+                    12 x 16in
+                  </sub>
+                </li>
+                <li onClick={updatePreview(this)}>
+                  <p>Medium</p>
+                  <sub>18 x 24in</sub>
+                </li>
+                <li onClick={updatePreview(this)}>
+                  <p>Large</p>
+                  <sub>21 x 28in</sub>
+                </li>
+              </ul>
+            </article>
+
+            {renderSelector(framing)}
+
+            {/* </article> */}
+            <article>
+              <p><strong>How many?</strong></p>
+              <div class="select quantity">
+                <p>1 Poster</p>
+                <p><strong>$-</strong></p>
+                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.7117 7.04975L8.17621 10.5853C8.07858 10.6829 7.92029 10.6829 7.82266 10.5853L4.28712 7.04975C3.99423 6.75685 3.51936 6.75685 3.22646 7.04975C2.93357 7.34264 2.93357 7.81751 3.22646 8.11041L6.762 11.6459C7.44541 12.3294 8.55345 12.3294 9.23687 11.6459L12.7724 8.11041C13.0653 7.81751 13.0653 7.34264 12.7724 7.04975C12.4795 6.75685 12.0046 6.75685 11.7117 7.04975Z" fill="#0D1216" />
+                </svg>
+
+              </div>
+            </article>
+
+
+            <div class="divider"></div>
+            <article class="perk">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 21.8823C6.59522 21.8823 2.19922 17.4853 2.19922 12.0813C2.19922 6.67727 6.59522 2.28027 12.0002 2.28027C17.4052 2.28027 21.8012 6.67627 21.8012 12.0813C21.8012 17.4863 17.4042 21.8823 12.0002 21.8823ZM16.1872 10.0503C16.1872 10.6086 15.7346 11.0613 15.1762 11.0613C14.6179 11.0613 14.1652 10.6086 14.1652 10.0503C14.1652 9.49191 14.6179 9.03927 15.1762 9.03927C15.7346 9.03927 16.1872 9.49191 16.1872 10.0503ZM8.82422 11.0613C9.38258 11.0613 9.83522 10.6087 9.83522 10.0503C9.83522 9.49195 9.38258 9.03931 8.82422 9.03931C8.26586 9.03931 7.81322 9.49195 7.81322 10.0503C7.81322 10.6087 8.26586 11.0613 8.82422 11.0613ZM16.2342 13.2443C14.4972 17.0243 9.57622 17.0983 7.76522 13.3393C7.27522 12.3223 5.76622 13.2103 6.25422 14.2223C8.60722 19.1063 15.4772 19.0643 17.7462 14.1273C18.2142 13.1093 16.7052 12.2193 16.2342 13.2443ZM3.69922 12.0813C3.69922 7.50427 7.42322 3.78027 12.0002 3.78027C16.5772 3.78027 20.3012 7.50427 20.3012 12.0813C20.3012 16.6583 16.5772 20.3823 12.0002 20.3823C7.42322 20.3823 3.69922 16.6583 3.69922 12.0813Z" fill="#0E1318" />
+              </svg>
+              <div>
+                <p><strong>Happiness Guarantee</strong></p>
+                <p>If you're not happy with your order contact us and we'll fix it, reprint it or refund it!</p>
+              </div>
+            </article>
 
           </section>
           <section id="print-panel-footer">
@@ -214,5 +349,28 @@ function App() {
     // </div>
   );
 }
+
+let thumbnail = document.querySelectorAll('label.thumbnail-select');
+// console.log(thumbnail);
+for (let i = 0; i < thumbnail.length; i ++) {
+  thumbnail[i].addEventListener("click", newFunction);
+}
+
+// let size = document.querySelectorAll('li');
+
+// for (let i = 0; i < size.length; i ++) {
+//   size[i].addEventListener("click", newFunction);
+// }
+
+function newFunction() {
+  // console.log()
+  console.log("update preview");
+}
+
+function updatePreview(what) {
+  return;
+}
+
+
 
 export default App;
