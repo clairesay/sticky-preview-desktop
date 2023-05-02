@@ -72,7 +72,7 @@ function renderSelector(parameter) {
 	let thumbnails;
 
 	if (parameter.type === "Thumbnail") {
-		thumbnails = 
+		thumbnails =
 
 			(<article class="selector" onLoad={() => updatePreview(currentSelection.frame)}>
 
@@ -88,8 +88,8 @@ function renderSelector(parameter) {
 				</div>
 
 			</article>)
-			
-		
+
+
 	} else {
 
 	}
@@ -111,38 +111,70 @@ function scrollPreview() {
 	// console.log(preview.getBoundingClientRect().bottom);
 	// // var newst = document.getElementById()
 	// //    console.log(st);
-		// console.log("ST is: " + st);
+	// console.log("ST is: " + st);
 	// if (Math.abs(st - lastScrollTop) > 100) {
-		console.log("SCROLL TOP is: " + lastScrollTop)
-		// if (Math.abs(st - lastScrollTop) > 20) {
-		if (st < 10 && preview.getBoundingClientRect().bottom < 240.5) {
-			// console.log("up");
-			preview.classList.remove("smaller");
-			
-			preview.classList.remove("shrunk");
-			// setTimeout(1000);
-			
-		} else if (st > lastScrollTop) {
-			preview.classList.add("smaller");
-			setTimeout(() => {
-				preview.classList.add("shrunk");
-				main.removeEventListener("onscroll", scrollPreview);
-			  }, "20");
-			
-		} else {
+	console.log("SCROLL TOP is: " + lastScrollTop)
+	// if (Math.abs(st - lastScrollTop) > 20) {
+	if (st < 10 && preview.getBoundingClientRect().bottom < 240.5) {
+		// console.log("up");
+		preview.classList.remove("smaller");
 
-		}
-		   lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+		preview.classList.remove("shrunk");
+		// setTimeout(1000);
+
+	} else if (st > lastScrollTop) {
+		preview.classList.add("smaller");
+		setTimeout(() => {
+			preview.classList.add("shrunk");
+			main.removeEventListener("onscroll", scrollPreview);
+		}, "20");
+
+	} else {
+
+	}
+	lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
 	// }
 
 	// }, false);
+}
+
+function updateChevrons() {
+	let left = document.getElementById("left");
+	let right = document.getElementById("right");
+	let preview = document.querySelector("#live-preview");
+
+	let leftLimit = preview.scrollLeft;
+	let rightLimit = Math.abs(preview.scrollWidth - preview.scrollLeft - preview.clientWidth);
+
+	if (leftLimit < 100) {
+		left.classList.add("hidden");
+	} else {
+		left.classList.remove("hidden");
+	}
+
+	if (rightLimit < 120) {
+		right.classList.add("hidden");
+	} else {
+		right.classList.remove("hidden");
+	}
+
+}
+
+function scrollChevrons(direction) {
+	let preview = document.querySelector("#live-preview");
+
+	if (direction == "left") {
+		preview.scrollBy(-200, 0);
+	} else if (direction == "right") {
+		preview.scrollBy(200, 0);
+	}
 }
 
 
 function updateSize(newParam) {
 	currentSelection.size = newParam;
 	let allSizes = document.querySelectorAll(".size-option")
-	for (let i = 0; i < allSizes.length; i ++) {
+	for (let i = 0; i < allSizes.length; i++) {
 		if (allSizes[i].classList.contains(currentSelection.size)) {
 			// allFrames[i].style.backgroundColor = "blue";
 			allSizes[i].classList.add("active");
@@ -168,7 +200,7 @@ function updatePreview(newParam) {
 
 	// updates the frames;
 	let allFrames = document.querySelectorAll(".thumbnail-select");
-	for (let i = 0; i < allFrames.length; i ++) {
+	for (let i = 0; i < allFrames.length; i++) {
 		if (allFrames[i].classList.contains(currentSelection.frame)) {
 			// allFrames[i].style.backgroundColor = "blue";
 			allFrames[i].classList.add("active");
@@ -187,7 +219,7 @@ function App() {
 	// updatePreview("no-frame");
 
 	return (
-		
+
 		<body>
 			{/* HEADER */}
 			<header id="canva-header">
@@ -294,7 +326,7 @@ function App() {
 					<section id="toolbar">
 						<button>
 							{/* HELP LOL */}
-							<img style={{padding: "0px 12px"}} src={colorSelectSwatch} />
+							<img style={{ padding: "0px 12px" }} src={colorSelectSwatch} />
 						</button>
 						<button class="dark tertiary icon">
 							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -365,8 +397,20 @@ function App() {
 					<section id="print-panel-main" onScroll={() => scrollPreview()}>
 
 
-						<section id="live-preview">
-						{createLivePreview()}
+						<section id="live-preview" onScroll={() => updateChevrons()}>
+							{createLivePreview()}
+							<button id="left" class="chevron icon hidden" onClick={() => scrollChevrons("left")}>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M9.53033 11.7127L5.9948 8.17719C5.89717 8.07956 5.89717 7.92126 5.9948 7.82363L9.53033 4.2881C9.82322 3.99521 9.82322 3.52033 9.53033 3.22744C9.23744 2.93455 8.76256 2.93455 8.46967 3.22744L4.93414 6.76297C4.25072 7.44639 4.25072 8.55443 4.93414 9.23785L8.46967 12.7734C8.76256 13.0663 9.23744 13.0663 9.53033 12.7734C9.82322 12.4805 9.82322 12.0056 9.53033 11.7127Z" fill="#191E26" />
+								</svg>
+
+							</button>
+							<button id="right" class="chevron icon" onClick={() => scrollChevrons("right")}>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M6.46967 4.28728L10.0052 7.82281C10.1028 7.92044 10.1028 8.07874 10.0052 8.17637L6.46967 11.7119C6.17678 12.0048 6.17678 12.4797 6.46967 12.7726C6.76256 13.0655 7.23744 13.0655 7.53033 12.7726L11.0659 9.23703C11.7493 8.55361 11.7493 7.44557 11.0659 6.76215L7.53033 3.22662C7.23744 2.93373 6.76256 2.93373 6.46967 3.22662C6.17678 3.51951 6.17678 3.99439 6.46967 4.28728Z" fill="#0E1318" />
+								</svg>
+
+							</button>
 						</section>
 						<section id="everything-else">
 							{/* headline */}
@@ -427,53 +471,55 @@ function App() {
 							</article>
 
 						</section>
-						
+
 					</section>
 					<section id="print-panel-footer">
-							<div>
-								<p><strong>Subtotal</strong></p>
-								<p><strong>$-</strong></p>
-							</div>
-							<button class="light primary text">
-								Continue
-							</button>
-						</section>
+						<div>
+							<p><strong>Subtotal</strong></p>
+							<p><strong>$-</strong></p>
+						</div>
+						<button class="light primary text">
+							Continue
+						</button>
+					</section>
 				</section>
 			</main>
 
 			<ul onLoad={() => updateSize("small")}>
 				<li class="size-option small" value="0" onClick={() => updateSize("small")}>
 					<p>Small
-					<sub>
-						12 x 16in
-					</sub>
+						<sub>
+							12 x 16in
+						</sub>
 					</p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4.53 11.9 9 16.38 19.44 5.97a.75.75 0 0 1 1.06 1.06L9.53 17.97c-.3.29-.77.29-1.06 0l-5-5c-.7-.71.35-1.77 1.06-1.07z"></path></svg>
 				</li>
 				<li class="size-option medium" value="1" onClick={() => updateSize("medium")}>
 					<p>Medium
-					<sub>18 x 24in</sub>
+						<sub>18 x 24in</sub>
 					</p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4.53 11.9 9 16.38 19.44 5.97a.75.75 0 0 1 1.06 1.06L9.53 17.97c-.3.29-.77.29-1.06 0l-5-5c-.7-.71.35-1.77 1.06-1.07z"></path></svg>
 
 				</li>
 				<li class="size-option large" value="2" onClick={() => updateSize("large")}>
 					<p>Large
-					<sub>21 x 28in</sub>
+						<sub>21 x 28in</sub>
 					</p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4.53 11.9 9 16.38 19.44 5.97a.75.75 0 0 1 1.06 1.06L9.53 17.97c-.3.29-.77.29-1.06 0l-5-5c-.7-.71.35-1.77 1.06-1.07z"></path></svg>
 				</li>
 			</ul>
 		</body>
-	
+
 	);
 }
 
 
-var currentSelection = {size:"small",
-						size_code: "0",
-						frame: "no-frame",
-						frame_code: "2"};
+var currentSelection = {
+	size: "small",
+	size_code: "0",
+	frame: "no-frame",
+	frame_code: "2"
+};
 
 function openFlyout() {
 
@@ -498,7 +544,7 @@ function openFlyout() {
 
 function updateLivePreview() {
 	let previews = document.querySelectorAll("#live-preview img");
-	for (let i = 0; i < previews.length; i ++) {
+	for (let i = 0; i < previews.length; i++) {
 		previews[i].src = previewSets[currentSelection.size + " " + currentSelection.frame][i];
 		console.log(previewSets[currentSelection.size + " " + currentSelection.frame][i]);
 	}
@@ -519,7 +565,7 @@ function createLivePreview() {
 
 	const listItems = previewBundle.map((preview) =>
 		// <li>{number}</li>
-		<img src={preview}/>
+		<img src={preview} />
 	);
 
 	return (listItems);

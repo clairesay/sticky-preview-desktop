@@ -541,6 +541,7 @@ sub {
   z-index: 1;
   box-shadow: none;
   position: relative;
+  scroll-behavior: smooth;
   /* top: 0;
   position: sticky; */
 
@@ -565,6 +566,7 @@ sub {
   border-radius: 4px;
   /* transition: all 0.6s 0s; */
   transition: width 0.5s ease 0s;
+
 }
 
 #live-preview.shrunk {
@@ -677,6 +679,54 @@ button.text {
 button.icon.text {
   padding: 8px 16px 8px 8px;
   gap: 8px;
+}
+
+button.chevron {
+  background-color: var(--white);
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border-radius: 20px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  border: 1px inset var(--border-low);
+  box-shadow: 0px 2px 8px 0px #0E131826;
+
+  position: sticky;
+  transform-origin: center center;
+  top: 42%;
+  transition: opacity 0.2s ease 0s;
+}
+
+button.chevron:hover {
+  cursor: pointer;
+  border-color: var(--border);
+  box-shadow: 0px 4px 12px 0px #0E131826;
+}
+
+button.chevron.hidden {
+  opacity: 0;
+}
+
+button.chevron.hidden:hover {
+  cursor: initial;
+}
+
+button.chevron#left {
+  /* left: 12px; */
+  right: 87%;
+  /* opacity: 0; */
+  /* display: none; */
+}
+
+button.chevron#right {
+  right: 0%;
+}
+
+#live-preview.shrunk button.chevron {
+  top: 30%;
 }
 
 /* PRINT PANEL */
