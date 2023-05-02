@@ -105,6 +105,7 @@ function scrollPreview() {
 	let main = document.getElementById("print-panel-main");
 
 	var st = main.scrollTop;
+	console.log(st)
 	// console.log(document.getElementById("print-panel").getBoundingClientRect().top)
 	// console.log(document.getElementById("everything-else").getBoundingClientRect().top)
 	// var gr = document.getElementById("everything-else").getBoundingClientRect().top;
@@ -113,9 +114,9 @@ function scrollPreview() {
 	// //    console.log(st);
 	// console.log("ST is: " + st);
 	// if (Math.abs(st - lastScrollTop) > 100) {
-	console.log("SCROLL TOP is: " + lastScrollTop)
+	// console.log("SCROLL TOP is: " + lastScrollTop)
 	// if (Math.abs(st - lastScrollTop) > 20) {
-	if (st < 10 && preview.getBoundingClientRect().bottom < 240.5) {
+	if (st < 10 && preview.getBoundingClientRect().bottom < 311) {
 		// console.log("up");
 		preview.classList.remove("smaller");
 
@@ -134,6 +135,12 @@ function scrollPreview() {
 	}
 	lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
 	// }
+	if (st > 300) {
+		document.getElementById("print-panel-footer").style.boxShadow = "none";
+	} else {
+		// console.log("over")
+		document.getElementById("print-panel-footer").style.boxShadow = "0px -2px 4px 0px #0E131810";
+	}
 
 	// }, false);
 }
@@ -213,6 +220,11 @@ function updatePreview(newParam) {
 	// console.log(currentSelection.frame);
 }
 
+function openPrintPanel() {
+	document.getElementsByTagName("main")[0].classList.remove("start");
+	document.getElementById("print-panel").classList.remove("start");
+}
+
 
 function App() {
 	// updateSize("small");
@@ -264,7 +276,7 @@ function App() {
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M12.75 3.75C12.75 3.33579 12.4142 3 12 3C11.5858 3 11.25 3.33579 11.25 3.75V18H7.75V11.75C7.75 11.3358 7.41421 11 7 11C6.58579 11 6.25 11.3358 6.25 11.75V18H2.75C2.33579 18 2 18.3358 2 18.75C2 19.1642 2.33579 19.5 2.75 19.5H21.25C21.6642 19.5 22 19.1642 22 18.75C22 18.3358 21.6642 18 21.25 18H17.75V7.75C17.75 7.33579 17.4142 7 17 7C16.5858 7 16.25 7.33579 16.25 7.75V18H12.75V3.75Z" fill="white" />
 						</svg>
 					</button>
-					<button class="dark secondary icon text">
+					<button class="dark secondary icon text" onClick={() => openPrintPanel()}>
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M17 2H7C5.89543 2 5 2.89543 5 4V16.0852V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V14.0234V4C19 2.89543 18.1046 2 17 2ZM16.3714 10.7863L17.5 12.1762V4C17.5 3.72386 17.2761 3.5 17 3.5H7C6.72386 3.5 6.5 3.72386 6.5 4V14.2104L6.88515 13.729C6.97441 13.6174 7.07538 13.5157 7.18632 13.4256C8.04389 12.7295 9.30344 12.8603 9.9996 13.7179L10.4631 14.2888L13.2573 10.7973C13.3464 10.6859 13.4473 10.5844 13.5581 10.4944C14.4155 9.79812 15.6751 9.92879 16.3714 10.7863ZM17.5 20V14.5557L15.2069 11.7318C15.0329 11.5175 14.718 11.4848 14.5036 11.6589C14.4759 11.6814 14.4507 11.7067 14.4284 11.7346L11.4305 15.4806L15.5052 20.5H17C17.2761 20.5 17.5 20.2761 17.5 20ZM13.5732 20.5H7C6.72386 20.5 6.5 20.2762 6.5 20V16.6115L8.05641 14.6661C8.07873 14.6382 8.10397 14.6128 8.1317 14.5903C8.3461 14.4162 8.66098 14.4489 8.83503 14.6633L13.5732 20.5ZM11 7.5C11 8.32843 10.3284 9 9.5 9C8.67157 9 8 8.32843 8 7.5C8 6.67157 8.67157 6 9.5 6C10.3284 6 11 6.67157 11 7.5Z" fill="white" />
 						</svg>
@@ -280,7 +292,7 @@ function App() {
 
 			</header>
 
-			<main>
+			<main class="start">
 				<section id="object-panel">
 					<button class="app">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -381,7 +393,7 @@ function App() {
 					</section>
 					{/* </section> */}
 				</section>
-				<section id="print-panel">
+				<section id="print-panel" class="start">
 					<section id="print-panel-nav">
 						<div></div>
 						<button id="tab">

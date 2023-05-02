@@ -205,6 +205,9 @@ section {
 
 body {
   line-height: 1;
+  /* overflow-x: hidden; */
+  /* overflow-y: unset; */
+  /* overflow-y: hidden; */
 }
 
 ol,
@@ -246,6 +249,7 @@ table {
   --grey-light: #EBECF0;
   --grey-ultra-dark: #18191B;
   --white: #ffffff;
+  --white15: #FFFFFF26;
   --white70: #FFFFFFB2;
   --white07: #FFFFFF12;
   --type-primary: #0D1216;
@@ -281,6 +285,8 @@ main {
   flex-direction: row;
   width: 100%;
   height: 100%;
+
+  transition: all 0.25s ease 0s;
 }
 
 header {
@@ -414,6 +420,8 @@ div {
   background-color: white;
   box-shadow: -1px 0px 1px 0px #0E13181A;
   grid-template-rows: 48px auto 94px;
+
+  /* transition: all 0.25s ease 0s; */
 }
 
 #print-panel-nav {
@@ -570,13 +578,13 @@ sub {
 }
 
 #live-preview.shrunk {
-  box-shadow: 0px 2px 2px 0px #0E131810;
+  box-shadow: 0px 2px 4px 0px #0E131810;
     top: 0;
   position: sticky;
 }
 
 #live-preview.smaller img {
-  width: 45%;
+  width: 75%;
 }
 
 .select.quantity {
@@ -607,8 +615,9 @@ sub {
   /* align-items: center; */
   /* text-align: center; */
 
-  box-shadow: 0px 2px 12px 0px #0E131833;
+  box-shadow: 0px -2px 4px 0px #0E131810;
 
+  transition: all 0.2s ease 0s;
   /* box-shadow: 0px 0px 0px 1px #0E131812; */
 }
 
@@ -649,6 +658,10 @@ button {
   border-radius: 4px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .light.primary {
   color: var(--white);
   background-color: var(--primary);
@@ -657,6 +670,10 @@ button {
 .dark.secondary,
 .dark.tertiary {
   color: var(--white);
+}
+
+.dark.secondary:hover {
+  background-color: var(--white15);
 }
 
 .dark.primary {
@@ -716,17 +733,17 @@ button.chevron.hidden:hover {
 
 button.chevron#left {
   /* left: 12px; */
-  right: 87%;
+  right: 89%;
   /* opacity: 0; */
   /* display: none; */
 }
 
 button.chevron#right {
-  right: 0%;
+  right: -2%;
 }
 
 #live-preview.shrunk button.chevron {
-  top: 30%;
+  top: 40%;
 }
 
 /* PRINT PANEL */
@@ -866,4 +883,17 @@ h1 ~ .text-group {
   input {
     display: none;
   }
+}
+
+/* //////// */
+#print-panel.start {
+  /* display: none; */
+  width: 20px;
+  position: fixed;
+  right: 20px;
+  opacity: 0;
+}
+
+main.start {
+  grid-template-columns: 72px 1fr 0;
 }
