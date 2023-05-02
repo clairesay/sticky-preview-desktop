@@ -221,8 +221,16 @@ function updatePreview(newParam) {
 }
 
 function openPrintPanel() {
-	document.getElementsByTagName("main")[0].classList.remove("start");
-	document.getElementById("print-panel").classList.remove("start");
+	let main = document.getElementsByTagName("main")[0];
+	let printPanel = document.getElementById("print-panel");
+	
+	if (main.classList.contains("start") && printPanel.classList.contains("start")) {
+		main.classList.remove("start");
+		printPanel.classList.remove("start");
+	} else {
+		main.classList.add("start");
+		printPanel.classList.add("start");
+	}
 }
 
 
@@ -400,7 +408,7 @@ function App() {
 							Posters
 						</button>
 						<div></div>
-						<button class="light tertiary icon">
+						<button class="light tertiary icon" onClick={() => openPrintPanel()}>
 							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M13.0604 11.9998L18.1868 17.1262C18.4797 17.419 18.4797 17.8939 18.1868 18.1868C17.8939 18.4797 17.419 18.4797 17.1262 18.1868L11.9998 13.0604L6.87336 18.1868C6.58047 18.4797 6.10559 18.4797 5.8127 18.1868C5.51981 17.8939 5.51981 17.419 5.8127 17.1262L10.9391 11.9998L5.81244 6.8731C5.51955 6.58021 5.51955 6.10534 5.81244 5.81244C6.10534 5.51955 6.58021 5.51955 6.8731 5.81244L11.9998 10.9391L17.1264 5.81244C17.4193 5.51955 17.8942 5.51955 18.1871 5.81244C18.48 6.10534 18.48 6.58021 18.1871 6.8731L13.0604 11.9998Z" fill="#191E26" />
 							</svg>
