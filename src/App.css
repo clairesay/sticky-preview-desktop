@@ -420,6 +420,7 @@ div {
   display: grid;
   grid-template-columns: 48px 1fr 1fr 48px;
   box-shadow: 0px 1px 1px 0px #0E13181A;
+  z-index: 2;
 
   /* grid-template-areas: "." "." "." "Close" */
 }
@@ -440,12 +441,17 @@ div {
 
 .select:hover {
   border-color: var(--border-hover);
+  cursor: pointer;
 }
 
 #print-panel-main article {
   display: grid;
   grid-template-rows: auto auto;
   row-gap: 4px;
+}
+
+article {
+  position: relative;
 }
 
 article > p > strong:first-child {
@@ -464,22 +470,52 @@ ul {
   background-color: var(--white);
   border-radius: 4px;
   box-shadow: 0px 2px 8px 0px #0E131826;
-  position: relative;
-  bottom:0;
+  position: absolute;
+  top: 72px;
   width: 100%;
-  /* box-shadow: 0px 0px 0px 1px #0E131805;   */
+
+  display: none;
+  z-index: 1;
 }
 
-li {
+ul.active {
+  display: inline;
+}
+
+li.size-option {
   padding: 8px 12px 8px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-direction */
 }
 
-li:active p {
+li.size-option p ~ svg {
+  visibility: hidden;
+}
+
+li.size-option.active p  {
+  font-weight: 500;
+}
+
+li.size-option.active sub {
   font-weight: 400;
+}
+
+li.size-option.active p ~ svg {
+  visibility: visible;
+}
+
+li.size-option p {
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+
 }
 
 li:hover {
   background-color: var(--black-07);
+  cursor: pointer;
 }
 
 sub {
@@ -488,16 +524,57 @@ sub {
 }
 
 #live-preview {
-  /* position: relative; */
   display: flex;
+  max-width: 360px;
+  overflow-x: scroll;
+  padding: 16px;
+  padding-bottom: 0;
+  gap: 16px;
+  height: max-content;
+
+  scroll-snap-type: x mandatory;
+
+
+
+
+  background-color: var(--white);
+  z-index: 1;
+  box-shadow: none;
+  position: relative;
+  /* top: 0;
+  position: sticky; */
+
+/* box-shadow: 0px 0px 0px 1px #40576D12; */
+/* transition: all 0.5s/ ease 2s; */
+/* transition-delay: 5s; */
+}
+
+/* SCROLLBAR */
+#live-preview::-webkit-scrollbar {
+  width: 0px;
 }
 
 #live-preview img {
-  min-width: 328px;
-  min-height: 244.7px;
-  max-width: 328px;
-  max-height: 244.7px;
+  scroll-snap-align: center;
+  width: 92%;
+  /* height: 72%; */
+  /* min-width: 328px; */
+  /* min-height: 244.7px; */
+  /* max-width: 328px; */
+  /* max-height: 244.7px; */
   border-radius: 4px;
+  /* transition: all 0.6s 0s; */
+  transition: width 0.5s ease 0s;
+}
+
+#live-preview.shrunk {
+  box-shadow: 0px 2px 2px 0px #0E131810;
+    top: 0;
+  position: sticky;
+}
+
+#live-preview.smaller img {
+  width: 45%;
 }
 
 .select.quantity {
@@ -605,16 +682,23 @@ button.icon.text {
 /* PRINT PANEL */
 
 #print-panel-main {
-  padding: 16px;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  /* padding: 16px;
+  padding-bottom: 0; */
+  display: grid;
+  /* flex-direction: column; */
+  grid-template-rows: auto auto;
+  /* gap: 16px; */
   max-height: 524px;
+  overflow-y: scroll;
 }
 
 #print-panel-main h1 {
-  text-align: center;
+  text-align: left;
+  line-height: 26px;
+}
+
+h1 ~ .text-group {
+  justify-content: flex-start;
 }
 
 .text-group {
@@ -627,6 +711,18 @@ button.icon.text {
 .text-group i {
   color: var(--type-tertiary);
   font-size: 14px;
+}
+
+#everything-else {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* overflow-y: scroll; */
+  padding: 16px;
+  padding-top: 0;
+  /* box-shadow: 0px 2px 4px 0px #0E13181A inset; */
+
+  /* box-shadow: 0px 4px 6px 0px #0E13181A inset; */
 }
 
 .selector {
@@ -668,17 +764,32 @@ button.icon.text {
   width: 85px;
   height: 64px;
   border: 1px inset var(--border-low);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .thumbnail-select {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px;
 }
 
-.thumbnail-select:hover img {
+.thumbnail-select img {
+
+}
+
+.thumbnail-select.active img {
+  border: 1px solid var(--primary); 
+  outline: 4px solid var(--white);
+  outline-offset: -5px;
+}
+
+.thumbnail-select:not(.active):hover img {
   border-color: var(--border-hover);
+}
+
+.thumbnail-select:hover {
+  cursor: pointer;
 }
 
 .divider {
@@ -697,6 +808,8 @@ button.icon.text {
   display: flex;
   flex-direction: column;
 }
+
+
 
 /* RESIZE */
 @media only screen and (max-width: 940px) {
