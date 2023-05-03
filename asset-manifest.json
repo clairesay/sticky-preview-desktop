@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sticky-preview-desktop/static/css/main.d531e20d.css",
-    "main.js": "/sticky-preview-desktop/static/js/main.41403432.js",
+    "main.js": "/sticky-preview-desktop/static/js/main.742e2ff6.js",
     "static/js/787.d65e2c76.chunk.js": "/sticky-preview-desktop/static/js/787.d65e2c76.chunk.js",
     "static/media/black-frame.png": "/sticky-preview-desktop/static/media/black-frame.b8e035e7e2d02dcc69a8.png",
     "static/media/no-frame.png": "/sticky-preview-desktop/static/media/no-frame.4ee8462f18c1b89afac8.png",
@@ -36,11 +36,11 @@
     "static/media/CanvaSans-Regular.woff": "/sticky-preview-desktop/static/media/CanvaSans-Regular.6e737f5b4eb2647d4d42.woff",
     "index.html": "/sticky-preview-desktop/index.html",
     "main.d531e20d.css.map": "/sticky-preview-desktop/static/css/main.d531e20d.css.map",
-    "main.41403432.js.map": "/sticky-preview-desktop/static/js/main.41403432.js.map",
+    "main.742e2ff6.js.map": "/sticky-preview-desktop/static/js/main.742e2ff6.js.map",
     "787.d65e2c76.chunk.js.map": "/sticky-preview-desktop/static/js/787.d65e2c76.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d531e20d.css",
-    "static/js/main.41403432.js"
+    "static/js/main.742e2ff6.js"
   ]
 }
