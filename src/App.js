@@ -105,7 +105,7 @@ function scrollPreview() {
 	let main = document.getElementById("print-panel-main");
 
 	var st = main.scrollTop;
-	console.log(st)
+	console.log("st is" + st)
 	// console.log(document.getElementById("print-panel").getBoundingClientRect().top)
 	// console.log(document.getElementById("everything-else").getBoundingClientRect().top)
 	// var gr = document.getElementById("everything-else").getBoundingClientRect().top;
@@ -116,7 +116,8 @@ function scrollPreview() {
 	// if (Math.abs(st - lastScrollTop) > 100) {
 	// console.log("SCROLL TOP is: " + lastScrollTop)
 	// if (Math.abs(st - lastScrollTop) > 20) {
-	if (st < 10 && preview.getBoundingClientRect().bottom < 311) {
+		console.log("preview is " + preview.getBoundingClientRect().bottom);
+	if (st < 10 && preview.getBoundingClientRect().bottom < 320) {
 		// console.log("up");
 		preview.classList.remove("smaller");
 
